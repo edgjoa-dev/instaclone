@@ -1,4 +1,5 @@
 const User = require('../models/user')
+const bcryptjs = require('bcryptjs')
 
 const resolvers = {
 
@@ -27,7 +28,9 @@ const resolvers = {
         const userNameValid = await User.findOne({email})
         if(userNameValid) throw new Error('nombre de usuario ya se encuentra registrado')
 
-        //TODO: Encriptar el password
+        //Encriptar el password
+        const salt = await bcryptjs.genSaltSync(10);
+        newUser.password = await bcryptjs.hash(password, salt);
 
         //Guardar newUser en DB
         try {
