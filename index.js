@@ -29,7 +29,9 @@ function server() {
         resolvers,
     });
 
-    serverApollo.listen().then((response)=>{
-        console.log("Servidor listening on");
+    serverApollo.listen().then(({url})=>{
+        console.log('#############################################');
+        console.log(`Servidor listening on ${url}`);
+        console.log('#############################################');
     })
 }
