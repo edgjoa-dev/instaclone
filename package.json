@@ -1,0 +1,22 @@
+{
+  "name": "instaclone",
+  "version": "1.0.0",
+  "description": "servidor de la aplicacion instaclone",
+  "main": "index.js",
+  "author": "edgar joaquin flores gonzalez",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "apollo-server": "^3.11.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "mongoose": "^6.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
