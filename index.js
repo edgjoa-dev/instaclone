@@ -1,7 +1,20 @@
-require('dotenv').config()
+const mongoose = require('mongoose');
 
-const Server = require('./models/server');
+require("dotenv").config({ path: ".env" })
 
+mongoose.set("strictQuery", false);
+mongoose.connect( process.env.MONGODB_CNN, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
+},
+(err, _)=>{
+    if(err){
+        console.log('Error de conexión')
+    }else{
+        console.log('Conexión correcta');
+    }
+}
 
-const server = new Server();
-server.listen();
+)
