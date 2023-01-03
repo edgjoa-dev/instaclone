@@ -1,3 +1,5 @@
+const User = require('../models/user')
+
 const resolvers = {
 
     Query: {
@@ -9,12 +11,34 @@ const resolvers = {
     },
 
     Mutation: {
-        register: ( _, {input} )=>{
-            //User registered
-            console.log('Registro de usuario ok');
-            console.log(input);
-            return input;
-        },
+        register: async( _, {input} )=>{
+        //Registro de uauario
+        const newUser = input
+
+        newUser.email = newUser.email.toLowerCase();
+        newUser.userName = newUser.userName.toLowerCase();
+
+        const { email, userName, password } = newUser
+
+        //validar si el email ya esta en uso
+        const emailValid = await User.findOne({email})
+        if(emailValid) throw new Error('email ya se encuentra registrado')
+        //validar si el userNasme ya esta en uso
+        const userNameValid = await User.findOne({email})
+        if(userNameValid) throw new Error('nombre de usuario ya se encuentra registrado')
+
+        //TODO: Encriptar el password
+
+        //Guardar newUser en DB
+        try {
+            const user = new User(newUser)
+            user.save();
+            return user;
+        } catch (error) {
+            console.log(error);
+            }
     },
+},
+
 }
 module.exports = resolvers;
