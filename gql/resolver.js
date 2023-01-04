@@ -2,17 +2,18 @@ const userController = require('../controllers/user')
 
 const resolvers = {
 
-    Query: {
+Query: {
 
-        getUser: ()=> {
-            console.log('Obteniendo usuario');
-            return null;
-        },
+    getUser: ()=> {
+        console.log('Obteniendo usuario');
+        return null;
     },
+},
 
-    Mutation: {
-        register: async( _, {input}) => userController.register(input)
-    },
+Mutation: {
+    register: ( _, {input}) => userController.register(input),
+    login: ( _, {input}) => userController.login(input),
+},
 
 }
 module.exports = resolvers;

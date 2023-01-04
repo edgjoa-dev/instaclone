@@ -15,7 +15,7 @@ async function register(input) {
     const emailValid = await User.findOne({email})
     if(emailValid) throw new Error('email ya se encuentra registrado')
     //validar si el userNasme ya esta en uso
-    const userNameValid = await User.findOne({email})
+    const userNameValid = await User.findOne({userName})
     if(userNameValid) throw new Error('nombre de usuario ya se encuentra registrado')
 
     //Encriptar el password
@@ -33,6 +33,15 @@ async function register(input) {
 
 }
 
+async function login(input) {
+    const { email, password } = input;
+
+    console.log(`Email: ${email}`);
+    console.log(`Password: ${password}`);
+}
+
+
 module.exports = {
     register,
+    login,
 }
