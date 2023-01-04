@@ -36,8 +36,18 @@ async function register(input) {
 async function login(input) {
     const { email, password } = input;
 
-    console.log(`Email: ${email}`);
-    console.log(`Password: ${password}`);
+    //validar si el email es correcto
+    const emailValid = await User.findOne({ email: email.toLowerCase() });
+    if(!emailValid) throw new Error('Email o Password incorrectos')
+
+    //validar si el password es correcto
+    const passwordValid = await bcryptjs.compare( password, emailValid.password );
+    if(!passwordValid) throw new Error('Email o Password incorrectos')
+
+    return {
+        token: 'sadsdjhgajdgf21ads3132adfg213sdfg'
+    }
+
 }
 
 
