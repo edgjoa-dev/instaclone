@@ -68,11 +68,12 @@ async function login(input) {
 async function getUser( id, userName ){
     let user = null;
 
-    if(id) user = await findById.User(id);
-    if(userName) user = await findOne.User({userName});
+    if(id) user = await User.findById(id);
+    if(userName) user = await User.findOne({userName});
 
     if(!user)throw new Error('El usuario no existe');
 
+    return user;
 }
 
 module.exports = {
