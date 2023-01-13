@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const { findOne, findById } = require('../models/user')
 
 function createToken( user, SECRET_KEY, expiresIn ){
     const { name, userName, email, password, } = user
@@ -64,8 +65,18 @@ async function login(input) {
 
 }
 
+async function getUser( id, userName ){
+    let user = null;
+
+    if(id) user = await findById.User(id);
+    if(userName) user = await findOne.User({userName});
+
+    if(!user)throw new Error('El usuario no existe');
+
+}
 
 module.exports = {
     register,
     login,
+    getUser,
 }

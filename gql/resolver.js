@@ -3,11 +3,7 @@ const userController = require('../controllers/user')
 const resolvers = {
 
 Query: {
-
-    getUser: ()=> {
-        console.log('Obteniendo usuario');
-        return null;
-    },
+    getUser: (_, {id, userName} )=> userController.getUser(id, userName),
 },
 
 Mutation: {
