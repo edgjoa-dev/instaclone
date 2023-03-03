@@ -3,13 +3,13 @@ const bcryptjs = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 function createToken( user, SECRET_KEY, expiresIn ){
-    const { name, userName, email, password, } = user
+    const { id, name, userName, email } = user
 
     const payload = {
+        id,
         name,
-        userName,
         email,
-        password,
+        userName,
     }
     return jwt.sign( payload, SECRET_KEY, { expiresIn } );
 }
